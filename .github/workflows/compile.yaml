@@ -182,12 +182,11 @@ jobs:
               
               echo "Processing $url"
               
-              # Create output directories inside presentation folder
-              mkdir -p "$dir/pdf"
+              # Create output directory inside presentation folder
               mkdir -p "$dir/png"
               
               # Generate PDF with 1920x1080 resolution
-              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/pdf/${filename}.pdf"
+              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/${filename}.pdf"
               
               # Generate screenshots with 1920x1080 resolution and custom naming
               decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
