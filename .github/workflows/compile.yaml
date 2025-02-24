@@ -94,16 +94,17 @@ jobs:
       - name: Organize Presentations
         run: |
           mkdir -p presentations
-          # Move any presentation-related files (md, qmd, html) from the root into presentations/
-          for file in *.md *.qmd *.html; do
-            [ -f "$file" ] || continue
-            case "$file" in
-              README.md|CONTRIBUTING.md|LICENSE.md) continue;;
-            esac
+          echo "Looking for presentation files in the root:"
+          find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" -o -iname "*.html" \) \
+            ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"
+          echo "Processing files..."
+          for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" -o -iname "*.html" \) \
+            ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
+            # Remove leading ./ from filename if present
+            file=${file#./}
             base=$(basename "$file" | sed 's/\.[^.]*$//')
             dest="presentations/$base"
             suffix=1
-            # Ensure unique folder name if one already exists with a presentation file
             while [ -d "$dest" ]; do
               if [ -f "$dest/$base.html" ] || [ -f "$dest/$base.md" ] || [ -f "$dest/$base.qmd" ]; then
                 dest="presentations/${base}_$suffix"
@@ -114,7 +115,8 @@ jobs:
             done
             mkdir -p "$dest"
             ext="${file##*.}"
-            mv "$file" "$dest/$base.$ext"
+            echo "Moving $file to $dest/$(basename "$dest").$ext"
+            mv "$file" "$dest/$(basename "$dest").$ext"
           done
           
       - name: Upload artifact
