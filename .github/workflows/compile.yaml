@@ -42,16 +42,10 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          npm install gulp
-          npm install gulp-cli
+          npm install gulp gulp-cli
           npm install @rollup/plugin-babel @rollup/plugin-commonjs @rollup/plugin-node-resolve @rollup/plugin-terser
           npm install gulp-zip gulp-header-comment gulp-eslint gulp-clean-css gulp-connect gulp-autoprefixer
-          npm install sass
-          npm install through2
-          npm install yargs
-          npm install glob
-          npm install node-qunit-puppeteer
-          npm install decktape
+          npm install sass through2 yargs glob node-qunit-puppeteer decktape
 
       - name: Build Project
         run: |
@@ -70,12 +64,12 @@ jobs:
           CI: true
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
-      # --- ORGANIZE AND RENDER PRESENTATIONS ---
+      # --- ORGANIZE AND RENDER PRESENTATIONS IN PLACE ---
       - name: Organize and Render Presentations and Commit
         run: |
           mkdir -p presentations
-          echo "Processing presentation source files in the root..."
-          # Process Markdown and Quarto source files
+          echo "Moving presentation source files from the root into presentations/"
+          # Process Markdown and Quarto source files from the root.
           for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file=${file#./}
@@ -86,7 +80,7 @@ jobs:
             echo "Moving source file $file into presentations/$base/"
             mv "$file" "presentations/$base/"
           done
-          # Optionally, also move any already rendered HTML files from the root.
+          # Optionally, move any already rendered HTML files from the root.
           for file in $(find . -maxdepth 1 -type f -iname "*.html" \
             ! -iname "README.html" ! -iname "CONTRIBUTING.html" ! -iname "LICENSE.html"); do
             file=${file#./}
@@ -159,10 +153,9 @@ jobs:
           sleep 60
           # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
-            # Remove trailing slash
             dir="${dir%/}"
             pres=$(basename "$dir")
-            # Look for the rendered HTML file expected to be at presentations/<pres>/<pres>.html
+            # Expect the rendered HTML file to be at presentations/<pres>/<pres>.html
             if [ -f "$dir/$pres.html" ]; then
               htmlfile="$pres.html"
             else
@@ -179,7 +172,7 @@ jobs:
             mkdir -p "$dir/png"
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
             
-            # Rename screenshots to "presentation_slide_001.png", etc.
+            # Rename screenshots to "<pres>_slide_001.png", etc.
             cd "$dir/png"
             count=1
             for f in temp_*_1920x1080.png; do
