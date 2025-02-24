@@ -72,6 +72,7 @@ jobs:
           
       - name: Organize and Render Presentations
         run: |
+          # Move .md/.qmd files to presentations/<base>/
           for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file="${file#./}"
@@ -80,12 +81,15 @@ jobs:
             mv "$file" "presentations/$base/"
           done
 
+          # Render each .md/.qmd into revealjs inside its presentation folder
           for dir in presentations/*/; do
             cd "$dir"
             for src in *.{md,qmd}; do
               if [ -f "$src" ]; then
                 echo "Rendering $src in $(pwd)..."
-                quarto render "$src" --to revealjs
+                # Name the output after the folder to keep it consistent
+                basefolder="$(basename "$(pwd)")"
+                quarto render "$src" --to revealjs --output "${basefolder}.html"
               fi
             done
             cd - >/dev/null
@@ -135,57 +139,44 @@ jobs:
       - name: Install Decktape
         run: npm install -g decktape
 
-      - name: Get modified HTML files
-        id: changed-files
-        run: |
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          HTML_TO_PROCESS=""
-          for file in $CHANGED_FILES; do
-            if [[ "$file" =~ \.(md|qmd)$ ]]; then
-              basename="${file%.*}"
-              if [[ -f "${basename}.html" ]]; then
-                HTML_TO_PROCESS+="${basename}.html "
-              fi
-            elif [[ "$file" =~ \.html$ ]]; then
-              HTML_TO_PROCESS+="$file "
-            fi
-          done
-          HTML_TO_PROCESS="${HTML_TO_PROCESS% }"
-          echo "files=${HTML_TO_PROCESS}" >> $GITHUB_OUTPUT
-
       - name: Generate PDFs and Screenshots
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
+          # Give GitHub Pages time to update
           sleep 60
-          CHANGED_FILES="${{ steps.changed-files.outputs.files }}"
-          
-          for file in $CHANGED_FILES; do
-            if [[ -f "$file" && "$file" == *.html ]]; then
-              dir="$(dirname "$file")"
-              filename="$(basename "$file" .html)"
-              url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/$file"
-              
-              pdf_dir="$dir/pdf"
-              png_dir="$dir/png"
 
-              mkdir -p "$pdf_dir"
-              mkdir -p "$png_dir"
-
-              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$pdf_dir/${filename}.pdf"
-              
-              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$png_dir"
-              
-              cd "$png_dir"
-              count=1
-              for f in temp_*_1920x1080.png; do
-                newname=$(printf "${filename}_slide_%02d_1920x1080.png" "$count")
-                mv "$f" "$newname"
-                count=$((count+1))
-              done
-              cd - >/dev/null
-              rm temp.pdf
+          # For each folder in presentations/*, look for a .html matching the folder name
+          for dir in presentations/*/; do
+            dir="${dir%/}"
+            pres="$(basename "$dir")"
+            htmlfile="$dir/${pres}.html"
+            if [ ! -f "$htmlfile" ]; then
+              echo "No HTML file named '${pres}.html' in $dir, skipping..."
+              continue
             fi
+
+            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/${pres}/${pres}.html"
+
+            echo "Generating PDF and screenshots for '${pres}' from URL: $url"
+
+            pdf_dir="$dir/pdf"
+            png_dir="$dir/png"
+            mkdir -p "$pdf_dir" "$png_dir"
+
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$pdf_dir/${pres}.pdf"
+
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$png_dir"
+
+            cd "$png_dir"
+            count=1
+            for f in temp_*_1920x1080.png; do
+              newname=$(printf "${pres}_slide_%03d_1920x1080.png" "$count")
+              mv "$f" "$newname"
+              count=$((count+1))
+            done
+            cd - >/dev/null
+            rm temp.pdf
           done
 
       - name: Commit and push changes
@@ -199,4 +190,3 @@ jobs:
             git push
           else
             echo "No changes to commit"
-          fi
