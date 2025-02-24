@@ -115,8 +115,8 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > presentation.webloc
           echo '<plist version="1.0">' >> presentation.webloc
           echo '<dict>' >> presentation.webloc
-          echo '	<key>URL</key>' >> presentation.webloc
-          echo '	<string>${{ steps.deployment.outputs.page_url }}</string>' >> presentation.webloc
+          echo '  <key>URL</key>' >> presentation.webloc
+          echo "  <string>${{ steps.deployment.outputs.page_url }}</string>" >> presentation.webloc
           echo '</dict>' >> presentation.webloc
           echo '</plist>' >> presentation.webloc
         env:
@@ -161,17 +161,16 @@ jobs:
               mkdir -p "$pdf_dir" "$png_dir"
 
               decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$pdf_dir/${pres}.pdf"
-
               decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$png_dir"
 
-              cd "$png_dir"
+              pushd "$png_dir" >/dev/null
               count=1
               for f in temp_*_1920x1080.png; do
                 newname=$(printf "${pres}_slide_%03d_1920x1080.png" "$count")
                 mv "$f" "$newname"
                 count=$((count+1))
               done
-              cd - >/dev/null
+              popd >/dev/null
               rm temp.pdf
             else
               echo "No HTML file named '${pres}.html' in $dir, skipping..."
