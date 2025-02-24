@@ -64,30 +64,30 @@ jobs:
           CI: true
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
-      # --- ORGANIZE AND RENDER PRESENTATIONS IN PLACE ---
+      # --- ORGANIZE AND RENDER PRESENTATIONS ---
       - name: Organize and Render Presentations and Commit
         run: |
           mkdir -p presentations
-          echo "Moving presentation source files from the root into presentations/"
-          # Process Markdown and Quarto source files from the root.
+          echo "Organizing presentation source files from the root..."
+          # Process Markdown and Quarto source files only (we assume these are the source files)
           for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file=${file#./}
             base=$(basename "$file" | sed 's/\.[^.]*$//')
             mkdir -p "presentations/$base"
-            echo "Rendering $file into presentations/$base/$base.html..."
-            quarto render "$file" --to revealjs --output "presentations/$base/$base.html"
-            echo "Moving source file $file into presentations/$base/"
+            echo "Moving $file to presentations/$base/"
             mv "$file" "presentations/$base/"
-          done
-          # Optionally, move any already rendered HTML files from the root.
-          for file in $(find . -maxdepth 1 -type f -iname "*.html" \
-            ! -iname "README.html" ! -iname "CONTRIBUTING.html" ! -iname "LICENSE.html"); do
-            file=${file#./}
-            base=$(basename "$file" | sed 's/\.[^.]*$//')
-            mkdir -p "presentations/$base"
-            echo "Moving rendered file $file into presentations/$base/"
-            mv "$file" "presentations/$base/"
+            cd "presentations/$base"
+            src=$(ls *.{md,qmd} 2>/dev/null | head -n 1)
+            if [ -z "$src" ]; then
+              echo "No source file found in presentations/$base, skipping render..."
+              cd - >/dev/null
+              continue
+            fi
+            echo "Rendering $src in presentations/$base/..."
+            # Render the presentation in place; the output will be named by default based on the source.
+            quarto render "$src" --to revealjs --output .
+            cd - >/dev/null
           done
           echo "Git status after organizing and rendering:"
           git status
@@ -149,7 +149,7 @@ jobs:
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          # Wait for GitHub Pages to update
+          # Wait for GitHub Pages to update (ensure rendered pages are live)
           sleep 60
           # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
