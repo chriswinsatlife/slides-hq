@@ -14,7 +14,7 @@ footer: <https://besci.org>
 
 - **Start with a Clear Decision**
   - Everything begins with choosing a specific behavior to adopt.
-  - *For instance*, committing to daily flossing to enhance dental health.
+  - *For instance*, committing to daily flossing to enhance oral health.
 
 - **Repeat in a Stable Context**
   - Consistent actions in the same setting reinforce habits.
