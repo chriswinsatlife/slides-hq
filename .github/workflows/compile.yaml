@@ -102,20 +102,9 @@ jobs:
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file=${file#./}
             base=$(basename "$file" | sed 's/\.[^.]*$//')
-            dest="presentations/$base"
-            suffix=1
-            while [ -d "$dest" ]; do
-              if [ -f "$dest/$base.html" ] || [ -f "$dest/$base.md" ] || [ -f "$dest/$base.qmd" ]; then
-                dest="presentations/${base}_$suffix"
-                suffix=$((suffix+1))
-              else
-                break
-              fi
-            done
-            mkdir -p "$dest"
-            ext="${file##*.}"
-            echo "Moving $file to $dest/$(basename "$dest").$ext"
-            mv "$file" "$dest/$(basename "$dest").$ext"
+            mkdir -p "presentations/$base"
+            echo "Moving $file to presentations/$base/"
+            mv "$file" "presentations/$base/"
           done
           echo "Git status after organizing:"
           git status
@@ -183,15 +172,17 @@ jobs:
           # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
             pres=$(basename "$dir")
+            # Look for an HTML file in the folder. Prefer one named exactly as the presentation.
             if [ -f "$dir/$pres.html" ]; then
-              htmlfile="$dir/$pres.html"
-            elif ls "$dir"*.html 1> /dev/null 2>&1; then
-              htmlfile=$(ls "$dir"*.html | head -n 1)
+              htmlfile="$pres.html"
+            elif ls "$dir"*.html 1>/dev/null 2>&1; then
+              htmlfile=$(ls "$dir"*.html | head -n 1 | xargs basename)
             else
               echo "No HTML file found in $dir, skipping..."
               continue
             fi
-            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/$htmlfile"
+            # Construct the URL to the presentation file.
+            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/$pres/$htmlfile"
             echo "Processing presentation '$pres' at $url"
             
             # Generate PDF in the presentation folder, named as presentation_name.pdf
