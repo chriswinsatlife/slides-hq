@@ -69,7 +69,7 @@ jobs:
         run: |
           mkdir -p presentations
           echo "Organizing presentation source files from the root..."
-          # Process Markdown and Quarto source files only (we assume these are the source files)
+          # Process only Markdown/Quarto files (the source files)
           for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file=${file#./}
@@ -78,15 +78,9 @@ jobs:
             echo "Moving $file to presentations/$base/"
             mv "$file" "presentations/$base/"
             cd "presentations/$base"
-            src=$(ls *.{md,qmd} 2>/dev/null | head -n 1)
-            if [ -z "$src" ]; then
-              echo "No source file found in presentations/$base, skipping render..."
-              cd - >/dev/null
-              continue
-            fi
-            echo "Rendering $src in presentations/$base/..."
-            # Render the presentation in place; the output will be named by default based on the source.
-            quarto render "$src" --to revealjs --output .
+            echo "Rendering $file in presentations/$base/ as ${base}.html..."
+            # Render in the current folder; output file will be named <base>.html
+            quarto render "$file" --to revealjs --output "${base}.html"
             cd - >/dev/null
           done
           echo "Git status after organizing and rendering:"
@@ -149,7 +143,7 @@ jobs:
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          # Wait for GitHub Pages to update (ensure rendered pages are live)
+          # Wait for GitHub Pages to update
           sleep 60
           # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
@@ -164,14 +158,11 @@ jobs:
             fi
             url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/$pres/$htmlfile"
             echo "Processing presentation '$pres' at $url"
-            
             # Generate PDF in the presentation folder, named as <pres>.pdf
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/$pres.pdf"
-            
             # Create a PNG subfolder inside the presentation folder
             mkdir -p "$dir/png"
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
-            
             # Rename screenshots to "<pres>_slide_001.png", etc.
             cd "$dir/png"
             count=1
