@@ -94,31 +94,29 @@ jobs:
       - name: Organize Presentations
         run: |
           mkdir -p presentations
-          # Loop over presentation-related files in the root
+          # Move any presentation-related files (md, qmd, html) from the root into presentations/
           for file in *.md *.qmd *.html; do
             [ -f "$file" ] || continue
             case "$file" in
               README.md|CONTRIBUTING.md|LICENSE.md) continue;;
             esac
             base=$(basename "$file" | sed 's/\.[^.]*$//')
-            target="presentations/$base"
-            counter=1
-            newtarget="$target"
-            # If a folder for this presentation exists and already contains a presentation file, adjust the name
-            while [ -d "$newtarget" ]; do
-              if [ -f "$newtarget/$base.html" ] || [ -f "$newtarget/$base.md" ] || [ -f "$newtarget/$base.qmd" ]; then
-                newtarget="${target}_$counter"
-                counter=$((counter+1))
+            dest="presentations/$base"
+            suffix=1
+            # Ensure unique folder name if one already exists with a presentation file
+            while [ -d "$dest" ]; do
+              if [ -f "$dest/$base.html" ] || [ -f "$dest/$base.md" ] || [ -f "$dest/$base.qmd" ]; then
+                dest="presentations/${base}_$suffix"
+                suffix=$((suffix+1))
               else
                 break
               fi
             done
-            mkdir -p "$newtarget"
+            mkdir -p "$dest"
             ext="${file##*.}"
-            # Rename the file to match the presentation folder name
-            mv "$file" "$newtarget/$(basename "$newtarget").$ext"
+            mv "$file" "$dest/$base.$ext"
           done
-      
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -140,8 +138,8 @@ jobs:
           echo '<?xml version="1.0" encoding="UTF-8"?>' > presentation.webloc
           echo '<plist version="1.0">' >> presentation.webloc
           echo '<dict>' >> presentation.webloc
-          echo '	<key>URL</key>' >> presentation.webloc
-          echo '	<string>${{ steps.deployment.outputs.page_url }}</string>' >> presentation.webloc
+          echo '  <key>URL</key>' >> presentation.webloc
+          echo "  <string>${{ steps.deployment.outputs.page_url }}</string>" >> presentation.webloc
           echo '</dict>' >> presentation.webloc
           echo '</plist>' >> presentation.webloc
         env:
@@ -173,20 +171,19 @@ jobs:
           # Loop over each presentation folder in the presentations directory
           for dir in presentations/*/; do
             pres=$(basename "$dir")
-            # Prefer an HTML file that matches the presentation folder name
+            # Look for a presentation file matching the folder name
             if [ -f "$dir/$pres.html" ]; then
               htmlfile="$dir/$pres.html"
+            elif ls "$dir"*.html 1> /dev/null 2>&1; then
+              htmlfile=$(ls "$dir"*.html | head -n 1)
             else
-              htmlfile=$(ls "$dir"*.html 2>/dev/null | head -n 1)
-            fi
-            if [ -z "$htmlfile" ]; then
               echo "No HTML file found in $dir, skipping..."
               continue
             fi
             url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/$htmlfile"
             echo "Processing presentation '$pres' at $url"
             
-            # Generate PDF in the presentation folder (named presentation_name.pdf)
+            # Generate PDF in the presentation folder, named as presentation_name.pdf
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/$pres.pdf"
             
             # Create a PNG subfolder inside the presentation folder
