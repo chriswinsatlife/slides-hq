@@ -213,4 +213,15 @@ jobs:
             rm temp.pdf
           done
       
-      # Remove commit/push step here; changes were already committed in build.
+      - name: Commit and push generated PDFs and screenshots
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add .
+            git commit -m "Add generated PDFs and screenshots"
+            git pull --rebase
+            git push
+          else
+            echo "No changes to commit"
+          fi
