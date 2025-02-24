@@ -91,16 +91,15 @@ jobs:
             fi
           done
           
-      - name: Organize Presentations
+      - name: Organize Presentations and Commit
         run: |
           mkdir -p presentations
-          echo "Looking for presentation files in the root:"
+          echo "Finding presentation files in the root:"
           find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" -o -iname "*.html" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"
           echo "Processing files..."
           for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" -o -iname "*.html" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
-            # Remove leading ./ from filename if present
             file=${file#./}
             base=$(basename "$file" | sed 's/\.[^.]*$//')
             dest="presentations/$base"
@@ -118,7 +117,18 @@ jobs:
             echo "Moving $file to $dest/$(basename "$dest").$ext"
             mv "$file" "$dest/$(basename "$dest").$ext"
           done
-          
+          echo "Git status after organizing:"
+          git status
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git config --global user.name "GitHub Actions Bot"
+            git config --global user.email "actions@github.com"
+            git add .
+            git commit -m "Organize presentations and add generated PDFs/screenshots"
+            git push
+          else
+            echo "No changes to commit"
+          fi
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -170,10 +180,9 @@ jobs:
           # Wait for GitHub Pages to be ready
           sleep 60
           
-          # Loop over each presentation folder in the presentations directory
+          # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
             pres=$(basename "$dir")
-            # Look for a presentation file matching the folder name
             if [ -f "$dir/$pres.html" ]; then
               htmlfile="$dir/$pres.html"
             elif ls "$dir"*.html 1> /dev/null 2>&1; then
@@ -204,15 +213,4 @@ jobs:
             rm temp.pdf
           done
       
-      - name: Commit and push changes
-        run: |
-          git config --global user.name "GitHub Actions Bot"
-          git config --global user.email "actions@github.com"
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git add .
-            git commit -m "Organize presentations and add generated PDFs/screenshots"
-            git pull --rebase
-            git push
-          else
-            echo "No changes to commit"
-          fi
+      # Remove commit/push step here; changes were already committed in build.
