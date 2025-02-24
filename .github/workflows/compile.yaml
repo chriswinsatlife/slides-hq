@@ -74,23 +74,51 @@ jobs:
         run: |
           for file in *.md; do
             if [ -f "$file" ] && [ "$file" != "README.md" ] && [ "$file" != "CONTRIBUTING.md" ] && [ "$file" != "LICENSE.md" ]; then
-              echo "Processing $file..."
+              echo "Rendering $file..."
               if ! quarto render "$file" --to revealjs; then
-                echo "Warning: Failed to process $file, skipping..."
+                echo "Warning: Failed to render $file, skipping..."
                 continue
               fi
             fi
           done
           for file in *.qmd; do
             if [ -f "$file" ]; then
-              echo "Processing $file..."
+              echo "Rendering $file..."
               if ! quarto render "$file" --to revealjs; then
-                echo "Warning: Failed to process $file, skipping..."
+                echo "Warning: Failed to render $file, skipping..."
                 continue
               fi
             fi
           done
           
+      - name: Organize Presentations
+        run: |
+          mkdir -p presentations
+          # Loop over presentation-related files in the root
+          for file in *.md *.qmd *.html; do
+            [ -f "$file" ] || continue
+            case "$file" in
+              README.md|CONTRIBUTING.md|LICENSE.md) continue;;
+            esac
+            base=$(basename "$file" | sed 's/\.[^.]*$//')
+            target="presentations/$base"
+            counter=1
+            newtarget="$target"
+            # If a folder for this presentation exists and already contains a presentation file, adjust the name
+            while [ -d "$newtarget" ]; do
+              if [ -f "$newtarget/$base.html" ] || [ -f "$newtarget/$base.md" ] || [ -f "$newtarget/$base.qmd" ]; then
+                newtarget="${target}_$counter"
+                counter=$((counter+1))
+              else
+                break
+              fi
+            done
+            mkdir -p "$newtarget"
+            ext="${file##*.}"
+            # Rename the file to match the presentation folder name
+            mv "$file" "$newtarget/$(basename "$newtarget").$ext"
+          done
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
@@ -118,7 +146,7 @@ jobs:
           echo '</plist>' >> presentation.webloc
         env:
           PAGE_URL: ${{ steps.deployment.outputs.page_url }}
-
+      
   generate-pdfs:
     needs: deploy
     runs-on: ubuntu-latest
@@ -126,87 +154,64 @@ jobs:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 2
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
+      
       - name: Install Decktape
         run: npm install -g decktape
-
-      - name: Create output directories
-        run: |
-          mkdir -p pdfs
-          mkdir -p pngs
-
-      - name: Get modified HTML files
-        id: changed-files
-        run: |
-          # Get all changed files
-          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-          
-          # Build list of HTML files to process
-          HTML_TO_PROCESS=""
-          for file in $CHANGED_FILES; do
-            if [[ "$file" =~ \.(md|qmd)$ ]]; then
-              # For .md/.qmd files, add corresponding .html
-              basename="${file%.*}"
-              if [[ -f "${basename}.html" ]]; then
-                HTML_TO_PROCESS+="${basename}.html "
-              fi
-            elif [[ "$file" =~ \.html$ ]]; then
-              # For .html files, add directly
-              HTML_TO_PROCESS+="$file "
-            fi
-          done
-          
-          # Remove trailing space and set output
-          HTML_TO_PROCESS="${HTML_TO_PROCESS% }"
-          echo "files=${HTML_TO_PROCESS}" >> $GITHUB_OUTPUT
-
-      - name: Generate PDFs and Screenshots
+      
+      - name: Generate PDFs and Screenshots for Presentations
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
           # Wait for GitHub Pages to be ready
           sleep 60
-
-          # Read the changed files
-          CHANGED_FILES="${{ steps.changed-files.outputs.files }}"
           
-          for file in $CHANGED_FILES; do
-            if [[ -f "$file" && "$file" == *.html ]]; then
-              filename=$(basename "$file" .html)
-              url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/$file"
-              
-              echo "Processing $url"
-              
-              # Generate PDF with 1920x1080 resolution
-              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "pdfs/${filename}.pdf"
-              
-              # Generate screenshots with 1920x1080 resolution and custom naming
-              mkdir -p "pngs/$filename"
-              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "pngs/$filename"
-              
-              # Rename screenshot files
-              cd "pngs/$filename"
-              for f in temp_*_1920x1080.png; do
-                num=$(echo $f | sed 's/temp_\([0-9]*\)_1920x1080.png/\1/')
-                mv "$f" "slide_$(printf %02d $num)_1920x1080.png"
-              done
-              cd ../..
-              rm temp.pdf
+          # Loop over each presentation folder in the presentations directory
+          for dir in presentations/*/; do
+            pres=$(basename "$dir")
+            # Prefer an HTML file that matches the presentation folder name
+            if [ -f "$dir/$pres.html" ]; then
+              htmlfile="$dir/$pres.html"
+            else
+              htmlfile=$(ls "$dir"*.html 2>/dev/null | head -n 1)
             fi
+            if [ -z "$htmlfile" ]; then
+              echo "No HTML file found in $dir, skipping..."
+              continue
+            fi
+            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/$htmlfile"
+            echo "Processing presentation '$pres' at $url"
+            
+            # Generate PDF in the presentation folder (named presentation_name.pdf)
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/$pres.pdf"
+            
+            # Create a PNG subfolder inside the presentation folder
+            mkdir -p "$dir/png"
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
+            
+            # Rename screenshots to "presentation_name_slide_001.png", etc.
+            cd "$dir/png"
+            count=1
+            for f in temp_*_1920x1080.png; do
+              newname=$(printf "${pres}_slide_%03d.png" "$count")
+              mv "$f" "$newname"
+              count=$((count+1))
+            done
+            cd - >/dev/null
+            rm temp.pdf
           done
-
+      
       - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          if [[ -n "$(git status --porcelain pdfs/ pngs/)" ]]; then
-            git add pdfs/ pngs/
-            git commit -m "Add generated PDFs and screenshots"
+          if [[ -n "$(git status --porcelain)" ]]; then
+            git add .
+            git commit -m "Organize presentations and add generated PDFs/screenshots"
             git pull --rebase
             git push
           else
