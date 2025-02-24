@@ -70,61 +70,38 @@ jobs:
           CI: true
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
 
-      # --- NEW ORDER: First, organize presentations, then render them in place ---
-
-      - name: Organize Presentations and Commit
+      # --- ORGANIZE AND RENDER PRESENTATIONS ---
+      - name: Organize and Render Presentations and Commit
         run: |
           mkdir -p presentations
-          echo "Moving presentation source files from the root into presentations/"
-          for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" -o -iname "*.html" \) \
+          echo "Processing presentation source files in the root..."
+          # Process Markdown and Quarto source files
+          for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
             ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
             file=${file#./}
             base=$(basename "$file" | sed 's/\.[^.]*$//')
             mkdir -p "presentations/$base"
-            echo "Moving $file to presentations/$base/$base.${file##*.}"
-            mv "$file" "presentations/$base/$base.${file##*.}"
+            echo "Rendering $file into presentations/$base/$base.html..."
+            quarto render "$file" --to revealjs --output "presentations/$base/$base.html"
+            echo "Moving source file $file into presentations/$base/"
+            mv "$file" "presentations/$base/"
           done
-          echo "Git status after moving files:"
+          # Optionally, also move any already rendered HTML files from the root.
+          for file in $(find . -maxdepth 1 -type f -iname "*.html" \
+            ! -iname "README.html" ! -iname "CONTRIBUTING.html" ! -iname "LICENSE.html"); do
+            file=${file#./}
+            base=$(basename "$file" | sed 's/\.[^.]*$//')
+            mkdir -p "presentations/$base"
+            echo "Moving rendered file $file into presentations/$base/"
+            mv "$file" "presentations/$base/"
+          done
+          echo "Git status after organizing and rendering:"
           git status
           if [[ -n "$(git status --porcelain)" ]]; then
             git config --global user.name "GitHub Actions Bot"
             git config --global user.email "actions@github.com"
             git add .
-            git commit -m "Organize presentation source files"
-            git push
-          else
-            echo "No changes to commit"
-          fi
-
-      - name: Render Presentations
-        run: |
-          # For each folder in presentations/, run quarto render on the source file.
-          for dir in presentations/*/; do
-            pres=$(basename "$dir")
-            # Look for a source file (.md or .qmd) in the folder.
-            src=""
-            if ls "$dir"*.md 1>/dev/null 2>&1; then
-              src=$(ls "$dir"*.md | head -n 1)
-            elif ls "$dir"*.qmd 1>/dev/null 2>&1; then
-              src=$(ls "$dir"*.qmd | head -n 1)
-            fi
-            if [ -z "$src" ]; then
-              echo "No source file found in $dir, skipping render..."
-              continue
-            fi
-            echo "Rendering presentation in $dir from source file $src..."
-            # Render to HTML output in the same folder.
-            if ! quarto render "$src" --to revealjs --output "$dir/"; then
-              echo "Warning: Failed to render $src"
-            fi
-          done
-          echo "Git status after rendering:"
-          git status
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config --global user.name "GitHub Actions Bot"
-            git config --global user.email "actions@github.com"
-            git add .
-            git commit -m "Render presentations"
+            git commit -m "Organize and render presentations"
             git push
           else
             echo "No changes to commit"
@@ -178,35 +155,31 @@ jobs:
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          # Wait for GitHub Pages to be ready
+          # Wait for GitHub Pages to update
           sleep 60
-          
           # Loop over each presentation folder in presentations/
           for dir in presentations/*/; do
             # Remove trailing slash
             dir="${dir%/}"
             pres=$(basename "$dir")
-            # Look for a rendered HTML file in the folder. Prefer one named exactly as the presentation.
+            # Look for the rendered HTML file expected to be at presentations/<pres>/<pres>.html
             if [ -f "$dir/$pres.html" ]; then
               htmlfile="$pres.html"
-            elif ls "$dir"*.html 1>/dev/null 2>&1; then
-              htmlfile=$(ls "$dir"*.html | head -n 1 | xargs basename)
             else
               echo "No rendered HTML file found in $dir, skipping..."
               continue
             fi
-            # Construct the URL to the rendered presentation.
             url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/$pres/$htmlfile"
             echo "Processing presentation '$pres' at $url"
             
-            # Generate PDF in the presentation folder, named as presentation_name.pdf
+            # Generate PDF in the presentation folder, named as <pres>.pdf
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/$pres.pdf"
             
             # Create a PNG subfolder inside the presentation folder
             mkdir -p "$dir/png"
             decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
             
-            # Rename screenshots to "presentation_name_slide_001.png", etc.
+            # Rename screenshots to "presentation_slide_001.png", etc.
             cd "$dir/png"
             count=1
             for f in temp_*_1920x1080.png; do
