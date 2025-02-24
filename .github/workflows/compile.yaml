@@ -58,6 +58,11 @@ jobs:
           npx gulp css
           npx gulp js
           npx gulp plugins
+
+      - name: Install Google Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y google-chrome-stable
           
       - name: Run Tests
         run: npm test
