@@ -17,13 +17,13 @@ jobs:
           - 20
     steps:
       - uses: actions/checkout@v4
-
+      
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-
+          
       - name: Cache Node Modules
         uses: actions/cache@v3
         with:
@@ -31,22 +31,18 @@ jobs:
           key: ${{ runner.os }}-node-${{ matrix.node-version }}-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-${{ matrix.node-version }}-
-
+          
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
         with:
           version: 1.4.549
-
+          
       - name: Set up Pandoc
         uses: r-lib/actions/setup-pandoc@v2
-
+          
       - name: Install Dependencies
-        run: |
-          npm install gulp gulp-cli
-          npm install @rollup/plugin-babel @rollup/plugin-commonjs @rollup/plugin-node-resolve @rollup/plugin-terser
-          npm install gulp-zip gulp-header-comment gulp-eslint gulp-clean-css gulp-connect gulp-autoprefixer
-          npm install sass through2 yargs glob node-qunit-puppeteer decktape
-
+        run: npm install gulp gulp-cli @rollup/plugin-babel @rollup/plugin-commonjs @rollup/plugin-node-resolve @rollup/plugin-terser gulp-zip gulp-header-comment gulp-eslint gulp-clean-css gulp-connect gulp-autoprefixer sass through2 yargs glob node-qunit-puppeteer decktape
+          
       - name: Build Project
         run: |
           npx gulp css
@@ -57,49 +53,37 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y google-chrome-stable
-
+          
       - name: Run Tests
         run: npm test
         env:
           CI: true
           PUPPETEER_EXECUTABLE_PATH: /usr/bin/google-chrome-stable
-
-      # --- ORGANIZE AND RENDER PRESENTATIONS ---
-      - name: Organize and Render Presentations and Commit
+          
+      - name: Render Presentations
         run: |
-          mkdir -p presentations
-          echo "Organizing presentation source files from the root..."
-          # Process only Markdown/Quarto files (the source files)
-          for file in $(find . -maxdepth 1 -type f \( -iname "*.md" -o -iname "*.qmd" \) \
-            ! -iname "README.md" ! -iname "CONTRIBUTING.md" ! -iname "LICENSE.md"); do
-            file=${file#./}
-            base=$(basename "$file" | sed 's/\.[^.]*$//')
-            mkdir -p "presentations/$base"
-            echo "Moving $file to presentations/$base/"
-            mv "$file" "presentations/$base/"
-            cd "presentations/$base"
-            echo "Rendering $file in presentations/$base/ as ${base}.html..."
-            # Render in the current folder; output file will be named <base>.html
-            quarto render "$file" --to revealjs --output "${base}.html"
-            cd - >/dev/null
+          # Find all presentation source files
+          for file in *.{md,qmd}; do
+            if [ -f "$file" ] && [ "$file" != "README.md" ] && [ "$file" != "CONTRIBUTING.md" ] && [ "$file" != "LICENSE.md" ]; then
+              basename="${file%.*}"
+              mkdir -p "presentations/$basename"
+              
+              # Copy source file to presentations directory
+              cp "$file" "presentations/$basename/"
+              
+              # Navigate to presentation directory and render
+              cd "presentations/$basename"
+              echo "Rendering $file in $(pwd)..."
+              quarto render "$file" --to revealjs
+              cd - >/dev/null
+            fi
           done
-          echo "Git status after organizing and rendering:"
-          git status
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git config --global user.name "GitHub Actions Bot"
-            git config --global user.email "actions@github.com"
-            git add .
-            git commit -m "Organize and render presentations"
-            git push
-          else
-            echo "No changes to commit"
-          fi
-
+          
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: .
-
+          
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -110,18 +94,6 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-      - name: Create .webloc file
-        run: |
-          echo '<?xml version="1.0" encoding="UTF-8"?>' > presentation.webloc
-          echo '<plist version="1.0">' >> presentation.webloc
-          echo '<dict>' >> presentation.webloc
-          echo '  <key>URL</key>' >> presentation.webloc
-          echo "  <string>${{ steps.deployment.outputs.page_url }}</string>" >> presentation.webloc
-          echo '</dict>' >> presentation.webloc
-          echo '</plist>' >> presentation.webloc
-        env:
-          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
 
   generate-pdfs:
     needs: deploy
@@ -139,51 +111,48 @@ jobs:
       - name: Install Decktape
         run: npm install -g decktape
 
-      - name: Generate PDFs and Screenshots for Presentations
+      - name: Generate PDFs and Screenshots
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          # Wait for GitHub Pages to update
+          # Wait for GitHub Pages deployment
           sleep 60
-          # Loop over each presentation folder in presentations/
+          
+          # Process each presentation
           for dir in presentations/*/; do
             dir="${dir%/}"
             pres=$(basename "$dir")
-            # Expect the rendered HTML file to be at presentations/<pres>/<pres>.html
-            if [ -f "$dir/$pres.html" ]; then
-              htmlfile="$pres.html"
-            else
-              echo "No rendered HTML file found in $dir, skipping..."
-              continue
-            fi
-            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/$pres/$htmlfile"
-            echo "Processing presentation '$pres' at $url"
-            # Generate PDF in the presentation folder, named as <pres>.pdf
-            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/$pres.pdf"
-            # Create a PNG subfolder inside the presentation folder
+            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/$pres/$pres.html"
+            
+            echo "Processing presentation at $url"
+            
+            # Generate PDF
+            mkdir -p "$dir/pdf"
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/pdf/$pres.pdf"
+            
+            # Generate screenshots
             mkdir -p "$dir/png"
-            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$dir/png"
-            # Rename screenshots to "<pres>_slide_001.png", etc.
+            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$dir/temp.pdf" --screenshots --screenshots-directory "$dir/png"
+            
+            # Rename screenshots
             cd "$dir/png"
             count=1
             for f in temp_*_1920x1080.png; do
-              newname=$(printf "${pres}_slide_%03d.png" "$count")
-              mv "$f" "$newname"
-              count=$((count+1))
+              if [ -f "$f" ]; then
+                newname=$(printf "%s_slide_%03d.png" "$pres" "$count")
+                mv "$f" "$newname"
+                count=$((count+1))
+              fi
             done
             cd - >/dev/null
-            rm temp.pdf
+            rm -f "$dir/temp.pdf"
           done
 
-      - name: Commit and push generated PDFs and screenshots
+      - name: Commit and push changes
         run: |
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
-          if [[ -n "$(git status --porcelain)" ]]; then
-            git add .
-            git commit -m "Add generated PDFs and screenshots"
-            git pull --rebase
-            git push
-          else
-            echo "No changes to commit"
-          fi
+          git add .
+          git commit -m "Add generated PDFs and screenshots" || echo "No changes to commit"
+          git pull --rebase
+          git push || echo "No changes to push"
