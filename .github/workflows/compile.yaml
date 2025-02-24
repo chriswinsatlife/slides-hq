@@ -87,7 +87,6 @@ jobs:
             for src in *.{md,qmd}; do
               if [ -f "$src" ]; then
                 echo "Rendering $src in $(pwd)..."
-                # Name the output after the folder to keep it consistent
                 basefolder="$(basename "$(pwd)")"
                 quarto render "$src" --to revealjs --output "${basefolder}.html"
               fi
@@ -143,40 +142,40 @@ jobs:
         env:
           REPO_NAME: ${{ github.repository }}
         run: |
-          # Give GitHub Pages time to update
           sleep 60
-
-          # For each folder in presentations/*, look for a .html matching the folder name
           for dir in presentations/*/; do
-            dir="${dir%/}"
             pres="$(basename "$dir")"
-            htmlfile="$dir/${pres}.html"
-            if [ ! -f "$htmlfile" ]; then
-              echo "No HTML file named '${pres}.html' in $dir, skipping..."
+            # Skip certain folders
+            if [ "$pres" = "demo" ] || [ "$pres" = "index" ]; then
+              echo "Skipping folder '$pres'..."
               continue
             fi
 
-            url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/${pres}/${pres}.html"
+            htmlfile="$dir/${pres}.html"
+            if [ -f "$htmlfile" ]; then
+              url="https://${{ github.repository_owner }}.github.io/${REPO_NAME#*/}/presentations/${pres}/${pres}.html"
+              echo "Generating PDF/PNGs for '$pres' from $url..."
+              
+              pdf_dir="$dir/pdf"
+              png_dir="$dir/png"
+              mkdir -p "$pdf_dir" "$png_dir"
 
-            echo "Generating PDF and screenshots for '${pres}' from URL: $url"
+              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$pdf_dir/${pres}.pdf"
 
-            pdf_dir="$dir/pdf"
-            png_dir="$dir/png"
-            mkdir -p "$pdf_dir" "$png_dir"
+              decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$png_dir"
 
-            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "$pdf_dir/${pres}.pdf"
-
-            decktape reveal --chrome-arg="--no-sandbox" --size 1920x1080 "$url" "temp.pdf" --screenshots --screenshots-directory "$png_dir"
-
-            cd "$png_dir"
-            count=1
-            for f in temp_*_1920x1080.png; do
-              newname=$(printf "${pres}_slide_%03d_1920x1080.png" "$count")
-              mv "$f" "$newname"
-              count=$((count+1))
-            done
-            cd - >/dev/null
-            rm temp.pdf
+              cd "$png_dir"
+              count=1
+              for f in temp_*_1920x1080.png; do
+                newname=$(printf "${pres}_slide_%03d_1920x1080.png" "$count")
+                mv "$f" "$newname"
+                count=$((count+1))
+              done
+              cd - >/dev/null
+              rm temp.pdf
+            else
+              echo "No HTML file named '${pres}.html' in $dir, skipping..."
+            fi
           done
 
       - name: Commit and push changes
