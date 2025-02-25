@@ -98,13 +98,14 @@ jobs:
           git config --global user.name "GitHub Actions Bot"
           git config --global user.email "actions@github.com"
           
-          # Add all HTML files in presentations directory
-          git add presentations/**/*.html
+          # Stage all changes - including HTML files
+          git add -A
           
           # Check if there are changes to commit
           if [[ -n "$(git status --porcelain)" ]]; then
             git commit -m "Add generated HTML presentations"
-            git pull --rebase
+            # Pull with strategy option to avoid conflicts
+            git pull --no-rebase --strategy-option=theirs
             git push
           else
             echo "No HTML changes to commit"
@@ -227,7 +228,7 @@ jobs:
           if [[ -n "$(git status --porcelain)" ]]; then
             git add .
             git commit -m "Add generated PDFs and screenshots"
-            git pull --rebase
+            git pull --no-rebase --strategy-option=theirs
             git push
           else
             echo "No changes to commit"
