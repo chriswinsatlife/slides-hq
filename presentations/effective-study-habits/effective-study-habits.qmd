@@ -1,0 +1,68 @@
+---
+title: "Effective Study Habits"
+subtitle: ""
+format:
+  revealjs:
+    slide-number: false
+    preview-links: auto
+    css: ../../dist/theme/cy.css
+    logo: "https://cdn.prod.website-files.com/5df525c935688c0af50a9c57/625ef4e2e44066485ac4ffac_New%20TBI%20BeSci.org%20Mark%20-%20Dark.svg"
+footer: <https://besci.org>
+
+---
+
+## Building Effective Study Habits
+
+- **Create a Dedicated Study Space**
+  - Designate a specific area for studying only.
+  - Minimize distractions and keep the space organized.
+
+- **Establish a Consistent Schedule**
+  - Set specific times for studying each day.
+  - Stick to the schedule even on days you feel unmotivated.
+
+- **Break Tasks into Manageable Chunks**
+  - Divide large assignments into smaller, actionable steps.
+  - Use a planner or app to track progress.
+
+---
+
+## Maximizing Focus and Productivity
+
+::: columns
+::: {.column width="33%"}
+**Minimize Distractions**
+- Use noise-cancelling headphones.
+- Turn off notifications on your phone.
+:::
+
+::: {.column width="34%"}
+**Use Active Recall**
+- Test yourself on the material.
+- Create flashcards or practice problems.
+:::
+
+::: {.column width="33%"}
+**Take Regular Breaks**
+- Follow the Pomodoro Technique (25 minutes work, 5 minutes break).
+- Stretch and move during breaks.
+:::
+:::
+
+---
+
+## The Science of Habit Formation
+
+- **The Role of Repetition**
+  - Consistent repetition strengthens neural pathways.
+  - The more you repeat a behavior, the more automatic it becomes.
+
+- **The Power of Rewards**
+  - Reward yourself after completing tasks.
+  - Positive reinforcement helps create lasting habits.
+
+- **The Importance of Accountability**
+  - Share your goals with a study group or friend.
+  - Regular check-ins can help maintain consistency.
+
+---
