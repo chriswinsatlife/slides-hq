@@ -553,6 +553,10 @@ html {
 	max-width: 56ch;
   	// white-space: nowrap;
   }
+
+.reveal .slide ul li > *:last-child, .reveal .slide ol li > *:last-child {
+    margin-bottom: 1.5em !important;
+ }
   
   a {
 	color: $linkColor;
@@ -675,12 +679,17 @@ html {
     .columns {
         display: flex !important;
         flex-direction: column !important;
-        gap: 1em !important;
+        gap: 0.1em !important;
     }
     
     .column {
         width: 100% !important;
         margin: 0 !important;
+    }
+
+    .reveal .columns>.column>:not(ul,ol) {
+	margin-left: 0 !important;
+	margin-right: 0 !important;
     }
 }
 
