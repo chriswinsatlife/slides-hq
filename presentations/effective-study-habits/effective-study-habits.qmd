@@ -19,7 +19,7 @@ footer: <https://besci.org>
 
 - **Establish a Consistent Schedule**
   - Set specific times for studying each day.
-  - Stick to the schedule even on days you feel less motivated.
+  - Stick to the schedule even on days you feel unmotivated.
 
 - **Break Tasks into Manageable Chunks**
   - Divide large assignments into smaller, actionable steps.
