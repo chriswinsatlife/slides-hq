@@ -659,6 +659,7 @@ html {
     display: flex !important;
     align-items: center !important;
     width: 100% !important;
+    align-self: flex-start
 }
 
 .column {
@@ -667,12 +668,13 @@ html {
     justify-content: center !important;
     flex-direction: column;
     padding: 1vmin;
+    align-self: flex-start
 }
 
 @media (max-width: 640px) {
     .columns {
         display: flex !important;
-        flex-direction: column-reverse !important;
+        flex-direction: column !important;
         gap: 1em !important;
     }
     
