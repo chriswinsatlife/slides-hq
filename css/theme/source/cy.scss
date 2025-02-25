@@ -162,7 +162,7 @@ body {
 	font-size: 1.6rem;
 	line-height: 1.6;
 	border-left: outset;
-    border-left-width: thick;
+        border-left-width: thick;
 
 	font-style: none;
 	background: none;
@@ -541,6 +541,10 @@ html {
 	h2 { font-size: 2.0rem; }
 	h3 { font-size: 1.6rem; }
 	h4 { font-size: 1.2rem; }
+
+	.reveal p {
+	  margin: 0 !important;
+	  }
   }
   
   // Paragraph and list styling with improved readability
