@@ -721,3 +721,35 @@ i.fa, i.fas, i.fab {
 .reveal .slide-menu-button:hover i.fas.fa-bars::before {
     color: rgba(48, 48, 48, 0.12) !important; /* Replace with hover color */
 }
+
+
+// Footer
+
+@media screen and (max-width: 800px) {
+    .reveal .footer {
+        font-size: 14px;
+        bottom: 1%;
+        left: 10%;
+    }
+}
+
+.reveal .footer {
+    display: block;
+    position: fixed;
+    bottom: 3%;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 18px;
+    z-index: 2;
+    left: 6%;
+    color: #222222
+}
+
+.reveal .footer a {
+    color: #222222;
+}
+
+.reveal .slide-menu-button .fa-bars::before {
+    filter: invert(20%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(30%) contrast(100%);
+}
