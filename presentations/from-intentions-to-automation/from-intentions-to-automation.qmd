@@ -162,10 +162,10 @@ SMS at 2h, 24h, 72h pre-action:
 
 ## The Critical Habit Formation Window
 
-Days 1-21: 53% dropout rate
-Days 22-50: 12% dropout
-Day 66: Median automaticity plateau
->100 days: 9% continue improving
+Days 1-21: 53% dropout rate 
+Days 22-50: 12% dropout 
+Day 66: Median automaticity plateau 
+>100 days: 9% continue improving 
 
 ---
 
