@@ -244,7 +244,7 @@ Caution: Backfires for bottom 15%
 
 ## Double-Edged Code: The Instrumental vs Terminal Trap
 
-"Our app became the habit" - 57% Onnikka users
+"Our app became the habit" - 57% Onnikka users 
 Fix: Fade prompts by 22% weekly after day 45
 
 ---
