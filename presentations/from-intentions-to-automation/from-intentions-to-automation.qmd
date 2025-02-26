@@ -102,11 +102,11 @@ While 81% of weight loss attempts fail within a year, habit-based approaches sho
 
 ::: {.columns}
 ::: {.column width="50%"}
-🔵 **Micro-Goals**: 2% weekly targets → 25% better adherence
+🔵 **Micro-Goals**: 2% weekly targets → 25% better adherence 
 🔵 **Progress Theater**: Livestrong users +9.3 weeks retention
 :::
 ::: {.column width="50%"}
-🔵 **Peer Contracts**: Implementation + partner → +18%
+🔵 **Peer Contracts**: Implementation + partner → +18% 
 🔵 **Reward Roulette**: Variable ratios beat fixed 24%
 :::
 :::
@@ -197,11 +197,13 @@ Morning OR evening fruit routines:
 
 ::: {.columns}
 ::: {.column width="33%"}
-🎰 **Variable Rewards**: 24% longer engagement
 🏆 **Badge Systems**: 5% ↑ per tier (up to 35%)
 :::
 ::: {.column width="34%"}
 👥 **Social Wins**: Benchmarking → 31% adherence
+:::
+::: {.column width="33%"}
+🎰 **Variable Rewards**: 24% longer engagement
 :::
 :::
 
@@ -271,11 +273,11 @@ Fix: Fade prompts by 22% weekly after day 45
 
 ::: {.columns}
 ::: {.column width="50%"}
-⚠️ Cue Overload: 5+ habits → OR=0.53 per added
+⚠️ Cue Overload: 5+ habits → OR=0.53 per added 
 ⚠️ Priming Misses: 41% skip context analysis
 :::
 ::: {.column width="50%"}
-⚠️ Static Rewards: 78% engagement drop by month 3
+⚠️ Static Rewards: 78% engagement drop by month 3 
 ⚠️ Solo Battles:  -14% vs social accountability
 :::
 :::
