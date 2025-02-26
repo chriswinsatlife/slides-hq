@@ -102,12 +102,12 @@ While 81% of weight loss attempts fail within a year, habit-based approaches sho
 
 ::: {.columns}
 ::: {.column width="50%"}
-🔵 **Micro-Goals**: 2% weekly targets → 25% better adherence 
-🔵 **Progress Theater**: Livestrong users +9.3 weeks retention
+ 🔵 **Micro-Goals**: 2% weekly targets → 25% better adherence 
+ 🔵 **Progress Theater**: Livestrong users +9.3 weeks retention
 :::
 ::: {.column width="50%"}
-🔵 **Peer Contracts**: Implementation + partner → +18% 
-🔵 **Reward Roulette**: Variable ratios beat fixed 24%
+ 🔵 **Peer Contracts**: Implementation + partner → +18% 
+ 🔵 **Reward Roulette**: Variable ratios beat fixed 24%
 :::
 :::
 
