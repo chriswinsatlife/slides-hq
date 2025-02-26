@@ -1,193 +1,140 @@
 ---
-title: "From Intentions to Automation: Unraveling Lasting Behavior Change"
+title: "From Intentions to Automation: The Science of Lasting Behavior Change"
+subtitle: ""
 format:
   revealjs:
     slide-number: false
     preview-links: auto
     css: ../../dist/theme/cy.css
+    logo: "https://cdn.prod.website-files.com/5df525c935688c0af50a9c57/625ef4e2e44066485ac4ffac_New%20TBI%20BeSci.org%20Mark%20-%20Dark.svg"
 ---
 
-## Overview
+## From Intentions to Automation: The Science of Lasting Behavior Change
 
-Weight loss fails 81% of the time within a year, yet habit-based methods triple 18‐month success rates (Cleo 2018). In this presentation, you’ll discover how neural pathways and smart interventions transform conscious effort into automatic action.
-
-::: notes
-Use image contrasting tangled versus streamlined neural pathways
-:::
+While 81% of weight loss attempts fail within a year, habit-based approaches show 3x higher 18-month success rates (Cleo 2018). This deck decodes the neural mechanisms and intervention strategies that make habits stick.
 
 ---
 
-## The Habit Trinity: Cues, Repetition, and Automation
+## The Habit Trinity: Cues, Repetition, Automation
 
-::: columns
-::: {.column}
-- **Automaticity**: Myelinated pathways bypass conscious control (Wood 2016).
+::: {.columns}
+::: {.column width="33%"}
+🧠 **Automaticity**: Myelinated neural pathways bypass conscious control (Wood 2016)
 :::
-
-::: {.column}
-- **Context Anchoring**: Event-based triggers produce 67% stronger habits than time cues (Judah 2012).
+::: {.column width="34%"}
+⏰ **Context Anchoring**: 67% stronger habits form with event vs time cues (Judah 2012)
 :::
-
-::: {.column}
-- **Repetition**: Habits plateau with a median of 66 days (Lally 2011).
+::: {.column width="33%"}
+🔁 **Repetition Threshold**: Median 66 days to plateau (IQR 57-81) (Lally 2011)
 :::
-:::
-
-::: notes
-Contrast visuals of deliberate versus automatic behaviors
 :::
 
 ---
 
-## From Effort to Automation: The Four Phases of Habit Formation
+## From Effort to Automation: The Habit Lifecycle
 
-1. Conscious Choice: Motivational interviewing boosts initiation by 41% (Gardner 2019).
-2. Action Planning: Using implementation intentions increases adherence by 18% (Moss 2020).
-3. Context Locking: Temporal chaining improves retention by 23% (Karppinen 2017).
-4. Neural Cementing: Myelination solidifies automaticity (effect size d=0.73).
+1. **Conscious Choice**: Motivational interviewing boosts initiation by 41% (Gardner 2019)
+2. **Action Planning**: Implementation intentions increase adherence 18% (Moss 2020)
+3. **Context Locking**: 23% better retention with temporal chaining (Karppinen 2017)
+4. **Neural Cementing**: Myelin growth tracks with automaticity scores (d=0.73)
 
-::: notes
-Incorporate a circular flowchart visual
+---
+
+## Habit Hardware: Basal Ganglia Myelination
+
+::: {.columns}
+::: {.column width="50%"}
+- 14% thicker myelin sheaths in established habits (fMRI studies)
+- Dorsal striatum activation shifts from effortful (early) to automatic (late)
+- 300+ repetitions show 62% neural efficiency gain
+:::
+::: {.column width="50%"}
+![](path/to/brain-image.jpg)
+:::
 :::
 
 ---
 
-## Habit Hardware: Myelination in the Basal Ganglia
+## Engineering Habit Ecosystems: Three Intervention Pillars
 
-::: columns
-::: {.column}
-- Established habits show 14% thicker myelin sheaths (fMRI studies).
-- Early phases require effortful activation, shifting to automatic responses in the dorsal striatum.
-:::
+---
 
-::: {.column}
-- Over 300 repetitions yield a 62% increase in neural efficiency.
-:::
-:::
+## Flossing Study: Event Segmentation Wins
 
-::: notes
-Highlight the basal ganglia region in the brain image
+::: {.columns}
+::: {.column width="50%"}
+**Before Brushing Group**:
+- 4.2 baseline → 5.1 automaticity
+- 63% adherence
+:::
+::: {.column width="50%"}
+**After Brushing Group**:
+- 4.2 → 6.7 automaticity
+- 89% adherence (d=0.67, p=.04)
+:::
 :::
 
 ---
 
-## Designing Habit Ecosystems: Three Pillars of Intervention
+## The 3-Link Chain: Existing → New → Reward
 
-This section details the three critical components for sustainable habit change: cue architecture, motivational scaffolding, and cognitive optimization.
+1. **Prime**: Coffee brewing (existing)
+2. **Action**: 5-min meditation (new)
+3. **Reinforce**: First sip (reward)
 
-::: notes
-Overlay icons representing gears, neurons, and calendars
+→ 23% higher adoption vs standalone
+
+---
+
+## The Onnikka Triangulation Effect
+
+- Meal logging + step tracking + sleep cues
+- 38% better 6-month retention vs single-cue
+- BUT: 57% developed app dependency
+
+---
+
+## "The Intention-Action Gap Is Where Habits Go to Die"
+
+---
+
+## Bridging the Gap: 43 Validated Tactics
+
+::: {.columns}
+::: {.column width="50%"}
+🔵 **Micro-Goals**: 2% weekly targets → 25% better adherence
+🔵 **Progress Theater**: Livestrong users +9.3 weeks retention
+:::
+::: {.column width="50%"}
+🔵 **Peer Contracts**: Implementation + partner → +18%
+🔵 **Reward Roulette**: Variable ratios beat fixed 24%
+:::
 :::
 
 ---
 
-## Study Spotlight: Event Cues Trump Time Cues
+## The "When X, I Y" Power Format
 
-::: columns
-::: {.column}
-**Before Brushing:**
-- Automaticity raised from 4.2 to 5.1, with 63% adherence.
-:::
-
-::: {.column}
-**After Brushing:**
-- Automaticity surged from 4.2 to 6.7, with 89% adherence (d=0.67, p=.04).
-Aligning flossing with an established routine yielded markedly better results.
-:::
-:::
-
-::: notes
-Use a dental infographic
-:::
+"When [alarm rings at 7am], I will [do 5 pushups]"
+→ 72% completion vs 54% vague plans
+Bonus: Public commitment adds 11% efficacy
 
 ---
 
-## The 3-Link Habit Chain: Existing Routine → New Action → Reward
-
-Embed your new behavior into an established chain:
-1. Prime with an existing activity (e.g., coffee brewing).
-2. Perform the new action (e.g., a 5-minute meditation).
-3. Reinforce with a reward (e.g., savoring your first sip).
-
-This design drives a 23% higher adoption rate compared to isolated actions.
-
-::: notes
-Visualize sequence with relevant icons
-:::
+## Rewiring the Mental Machinery
 
 ---
 
-## Onnikka Triangulation: Harnessing the Power of Multiple Cues
+## Spaced Reminders: The 2-24-72 Rule
 
-Combining meal logging, step tracking, and sleep cues produces 38% better 6-month retention than single cues. However, 57% of users risk becoming overly dependent on the app.
-
-::: notes
-Show overlapping circles converging on a success metric
+::: {.columns}
+::: {.column width="50%"}
+SMS at 2h, 24h, 72h pre-action:
+- 29% ↑ clinic attendance (Cleo 2018)
+- Works best for low PM individuals
 :::
-
----
-
-## Bridging the Gap: Preventing the Intention-Action Pitfall
-
-Without proper motivational scaffolding, your best intentions can falter. Gardner (2019) proves that bridging this gap is essential to transition from planning to action.
-
-::: notes
-Attribution to Gardner 2019
-:::
-
----
-
-## Bridging the Gap: 43 Proven Tactics to Ignite Action
-
-::: columns
-::: {.column}
-- Micro-Goals: Incremental 2% weekly targets boost adherence by 25%.
-- Progress Theater: Visual tracking extends routine retention by 9.3 weeks (Livestrong case).
-:::
-
-::: {.column}
-- Peer Contracts: Partner accountability improves compliance by 18%.
-- Reward Roulette: Variable reinforcement outperforms fixed rewards with a 24% lift.
-:::
-:::
-
-::: notes
-Use progress bar visuals
-:::
-
----
-
-## The “When X, I Y” Strategy: Clear, Committed Prompts
-
-Example: "When my alarm rings at 7am, I will do 5 push-ups."
-
-This method increases plan completion from 54% to 72%, and public commitments add an extra 11% boost in efficacy.
-
-::: notes
-Display sample sentences
-:::
-
----
-
-## Rewiring Your Mind: Boosting Cognitive Capacity for New Habits
-
-Optimizing cognitive resources is key. Tailor metacognitive training to your prospective memory capacity, ensuring reminders and strategies effectively support new habits without overwhelming your thinking.
-
-::: notes
-Highlight prefrontal versus basal ganglia roles
-:::
-
----
-
-## The 2-24-72 Reminder Rule: Precision Timing for Habit Success
-
-::: columns
-::: {.column}
-Deploy SMS reminders at 2, 24, and 72 hours before an intended action. This method has boosted clinic attendance by 29% (Cleo 2018) and is especially effective for those with lower prospective memory.
-:::
-
-::: {.column}
-Illustrate a timeline of notification events
+::: {.column width="50%"}
+![](path/to/notification-sequence.jpg)
 :::
 :::
 
@@ -195,220 +142,166 @@ Illustrate a timeline of notification events
 
 ## The 3D Approach: Decrease, Distribute, Delegate
 
-- Chunking: Splitting 15 reps into three sets of 5 cuts attrition by 38%.
-- Temptation Bundling: Combine activities, such as audiobooks with treadmill sessions.
-- Environment Design: Strategic placements (e.g., an inviting fruit bowl) boost healthy choices by 19%.
-
-::: notes
-Compare before/after layouts visually
+::: {.columns}
+::: {.column width="33%"}
+🧩 **Chunking**: 15 reps → 3x5 → 38% ↓ attrition
+:::
+::: {.column width="34%"}
+🕒 **Temptation Bundling**: Audiobooks + treadmill
+:::
+::: {.column width="33%"}
+🤝 **Environment Design**: Fruit bowl prominence → 19% ↑
+:::
 :::
 
 ---
 
 ## Why 68% of Habits Derail by Month 6
 
-Even once established, most habits falter by month 6 due to disruptions, diminishing rewards, and competing behaviors. Recognizing these risks is the first step to long-term success.
+---
 
-::: notes
-Transition to challenges with a stormy road metaphor
+## The Critical Habit Formation Window
+
+Days 1-21: 53% dropout rate
+Days 22-50: 12% dropout
+Day 66: Median automaticity plateau
+>100 days: 9% continue improving
+
+---
+
+## The Maintenance Triad of Doom
+
+::: {.columns}
+::: {.column width="33%"}
+🔥 **Context Shocks**: 39% weekend drop → 9% with flex cues
+:::
+::: {.column width="34%"}
+💤 **Reward Erosion**: Variable reinforcement → +24% engagement
+:::
+::: {.column width="33%"}
+⚔️ **Hijack Habits**: Water substitution beats suppression (OR=3.1)
+:::
 :::
 
 ---
 
-## The First 66 Days: A Window of Critical Change
+## Diefenbacher's Double-Anchor Strategy
 
-- Days 1–21: 53% dropout rate
-- Days 22–50: 12% additional dropout
-- Day 66: Median plateau in automaticity
-- Over 100 days: Only 9% show further improvement
+Morning OR evening fruit routines:
+- 39% → 9% weekend adherence drop
+- 22% ↑ context generalization
 
-This timeline highlights when targeted interventions yield the most impact.
+---
 
-::: notes
-Annotate key dropout phases
+## Gamifying the Boring Stuff
+
+::: {.columns}
+::: {.column width="33%"}
+🎰 **Variable Rewards**: 24% longer engagement
+🏆 **Badge Systems**: 5% ↑ per tier (up to 35%)
+:::
+::: {.column width="34%"}
+👥 **Social Wins**: Benchmarking → 31% adherence
+:::
 :::
 
 ---
 
-## The Maintenance Triad: Context, Reward, and Interference
+## When Silicon Meets Synapses
 
-::: columns
-::: {.column}
-- Context Shocks: Flexible cues drop weekend setbacks from 39% to 9%.
-:::
+---
 
-::: {.column}
-- Reward Erosion: Variable reinforcement maintains engagement 24% longer.
-:::
+## The Onnikka Algorithm: 7-Day Lookback
 
-::: {.column}
-- Habit Interference: Substitution strategies, like water for snacking, offer an OR of 3.1 in weight loss.
+::: {.columns}
+::: {.column width="50%"}
+- Adjusts step goals based on prior week's 10th percentile
+- 18% ↓ perceived effort vs fixed goals
 :::
+::: {.column width="50%"}
+But...57% app dependency risk
 :::
-
-::: notes
-Use crisis icons to emphasize each challenge
 :::
 
 ---
 
-## Double-Anchor Strategy: Flexibility Saves Habits
+## The Invisible Gym Class Effect
 
-Switching between morning and evening routines for key behaviors reduces weekend adherence drops from 39% to 9% and boosts context generalization by 22%.
-
-::: notes
-Visualize with sun and moon icons
+::: {.columns}
+::: {.column width="50%"}
+Anonymous cohort comparisons:
+- 31% ↑ meal logging
+- 22% ↑ workout consistency
+:::
+::: {.column width="50%"}
+Caution: Backfires for bottom 15%
+:::
 :::
 
 ---
 
-## Gamifying Your Gains: Reward Systems That Engage
+## Double-Edged Code: The Instrumental vs Terminal Trap
 
-- Variable Rewards: Extend engagement by 24%.
-- Badge Systems: Incremental tier achievements push adherence up to a 35% increase.
-- Social Wins: Anonymous benchmarking drives adherence by 31%.
+"Our app became the habit" - 57% Onnikka users
+Fix: Fade prompts by 22% weekly after day 45
 
-::: notes
-Utilize casino-style visuals
+---
+
+## From Lab to Reality: The Practitioner's Checklist
+
+---
+
+## The 62-22-16 Rule of Habit ROI
+
+::: {.columns}
+::: {.column width="33%"}
+🥇 **Context Alignment**: 62% success driver
+:::
+::: {.column width="34%"}
+🥈 **Plateau Prep**: 22% improvement
+:::
+::: {.column width="33%"}
+🥉 **Habit Tracking**: 3.2 vs 1.6 logins/week
+:::
 :::
 
 ---
 
-## When Silicon Meets Synapses: The Future of Habit Tech
+## The 5 Deadly Sins of Habit Design
 
-Modern systems blend machine learning, gamification, and social benchmarking to engineer behavior change. Embrace technology that supports peripheral neural rewiring rather than replacing genuine effort.
-
-::: notes
-Use futuristic imagery
+::: {.columns}
+::: {.column width="50%"}
+⚠️ Cue Overload: 5+ habits → OR=0.53 per added
+⚠️ Priming Misses: 41% skip context analysis
+:::
+::: {.column width="50%"}
+⚠️ Static Rewards: 78% engagement drop by month 3
+⚠️ Solo Battles:  -14% vs social accountability
+:::
 :::
 
 ---
 
-## The Onnikka Algorithm: Adaptive Habit Targeting
+## The Habiteer's Multitool: 7 Essentials
 
-::: columns
-::: {.column}
-Drawing on a 7-day lookback, the algorithm recalibrates daily step goals using the previous week’s 10th percentile.
-:::
-
-::: {.column}
-This reduces perceived effort by 18% over fixed targets, though 57% risk app dependency if not managed.
-:::
-:::
-
-::: notes
-Diagram showing data input, algorithm processing, and output
-:::
+1. Anchor to high-frequency events
+2. 2% weekly goal increments
+3. Variable interval rewards
+4. Implementation intentions + partner
+5. Context-flexible redundancy
+6. Fading tech dependencies
+7. Myelin-friendly repetition tracking
 
 ---
 
-## The Invisible Gym Class Effect: Social Accountability Wins
-
-Anonymous cohort comparisons spur a 31% increase in meal logging and a 22% boost in workout consistency. Be cautious—if you’re among the bottom 15%, social benchmarking can backfire without proper support.
-
-::: notes
-Use blurred faces for a leaderboard effect
-:::
+## Beyond Willpower: Building Behavior That Builds Itself
 
 ---
 
-## Double-Edged Code: Avoiding Tech Dependency
+## References
 
-In the Onnikka trial, 57% of users formed stronger app-use habits than lifestyle changes. Mitigate this by gradually fading prompts by 22% per week after day 45, ensuring technology remains a tool, not the target.
-
-::: notes
-Depict an app icon with a warning sign
-:::
-
----
-
-## From Lab to Life: The Practitioner’s Checklist
-
-Transition experimental insights into practical strategies. This blueprint emphasizes context alignment, responsive motivation, and cognitive optimization, ensuring every tool you deploy leads to sustainable change.
-
-::: notes
-Construction-themed visual transition
-:::
-
----
-
-## Habit ROI: The 62-22-16 Rule
-
-::: columns
-::: {.column}
-- Context Alignment: Drives 62% of successful habit change.
-:::
-
-::: {.column}
-- Plateau Preparation: Enhances persistence by 22%.
-:::
-
-::: {.column}
-- Habit Tracking: Boosts engagement from 1.6 to 3.2 logins per week.
-:::
-:::
-
-::: notes
-Visualize with a medal/tier system
-:::
-
----
-
-## 5 Deadly Sins of Habit Design (and How to Dodge Them)
-
-::: columns
-::: {.column}
-- Cue Overload: Adding more than 5 cues slashes success (OR=0.53 per extra cue).
-- Priming Failures: 41% of interventions lack proper context setup.
-:::
-
-::: {.column}
-- Static Rewards: Fixed rewards can drop engagement by 78% by month 3.
-- Solo Efforts: Lacking social support can result in a 14% performance dip.
-- Calendar Missteps: Pure time cues underperform by 67% versus event triggers.
-:::
-:::
-
-::: notes
-Use danger/warning icons
-:::
-
----
-
-## The Habiteer’s Toolbox: 7 Must-Have Strategies
-
-1. Anchor behaviors to high-frequency events.
-2. Set incremental 2% weekly goals.
-3. Employ variable interval rewards.
-4. Use clear “When X, I Y” commitments with a partner.
-5. Build in flexible, redundant routines.
-6. Gradually fade tech-dependent prompts.
-7. Monitor progress with myelin-friendly repetition tracking.
-
-::: notes
-Use a multifaceted toolkit metaphor
-:::
-
----
-
-## Beyond Willpower: Cultivating Self-Sustaining Change
-
-Your potential transcends mere intentions. With actionable insights and robust strategies, you can instill habits that run on autopilot—even when life gets chaotic.
-
-::: notes
-Employ a sunrise metaphor for automated growth
-:::
-
----
-
-## Cited Research & Sources
-
-1. Lally & Gardner (2011). Experiences of habit formation. Health Psychology.
-2. Judah et al. (2012). Flossing habit formation. British Journal of Health Psychology.
-3. Gardner (2019). Habit formation meta-analysis. Oxford Research Encyclopedia.
-4. Karppinen (2017). Onnikka system study. Journal of Medical Internet Research.
-5. Cleo et al. (2018). Habit-based weight loss RCT. Obesity Reviews.
-
-::: notes
-Use APA format precisely
-:::
+1. Lally, P., & Gardner, B. (2011). Experiences of habit formation. *Health Psychology*
+2. Judah, G. et al (2012). Flossing habit formation. *British Journal of Health Psychology*
+3. Gardner, B. (2019). Habit formation meta-analysis. *Oxford Research Encyclopedia*
+4. Karppinen, P. (2017). Onnikka system study. *Journal of Medical Internet Research*
+5. Cleo, G. et al (2018). Habit-based weight loss RCT. *Obesity Reviews*
