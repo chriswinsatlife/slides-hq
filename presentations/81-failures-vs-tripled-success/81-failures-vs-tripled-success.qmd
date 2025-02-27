@@ -1,0 +1,484 @@
+---
+title: "81% Failures vs. Tripled Success: Unveiling the Science of Lasting Change"
+subtitle: ""
+format:
+  revealjs:
+    slide-number: false
+    preview-links: auto
+    css: ../../dist/theme/cy.css
+    logo: "https://cdn.prod.website-files.com/5df525c935688c0af50a9c57/625ef4e2e44066485ac4ffac_New%20TBI%20BeSci.org%20Mark%20-%20Dark.svg"
+    footer: <https://besci.org>
+---
+
+
+## 81% Failures vs. Tripled Success: Unveiling the Science of Lasting Change
+
+81% of weight loss attempts fail within a year, but habit-based strategies can triple your success rate over 18 months (Cleo et al., 2018). Let's explore the neuroscience and practical methods behind habits that endure.  
+
+::: {.notes}
+Despite our best intentions, most efforts to change falter within months. But what if there's a way to flip the odds in our favor? Today, we'll delve into the science of habit formation—a powerful lever to transform fleeting attempts into lasting change.<break time="1.0s" />
+:::
+
+---
+
+
+## What Makes a Habit: Cues, Repetition, and Automation
+
+::: columns
+::: {.column width="33%"}
+🧠 **Automaticity**: Actions become automatic through neural reinforcement; myelinated pathways allow behaviors to bypass conscious control (Wood & Neal, 2016).  
+:::
+::: {.column width="34%"}
+⏰ **Context Anchoring**: Habits are 67% stronger when linked to specific events rather than time cues; flossing after brushing led to better outcomes (Judah et al., 2012).  
+:::
+::: {.column width="33%"}
+🔁 **Repetition Threshold**: It takes a median of 66 days for a behavior to become automatic, with an interquartile range of 57–81 days (Lally et al., 2010).  
+:::
+:::
+
+
+::: {.notes}
+At the core of every habit lies a simple formula: a cue triggers a routine, which becomes automatic over time. By understanding this loop, we can consciously design habits that stick. Remember, it typically takes about two months of repetition for a new behavior to become second nature.<break time="1.0s" />
+:::
+
+---
+
+
+## From Effortful Actions to Automatic Habits: The Four Stages
+
+1.  **Conscious Decision**: Choosing to change; motivational interviewing increases initiation rates by 41% (Gardner, 2019).  
+2.  **Action Planning**: Creating detailed plans boosts adherence by 18%; specifying when, where, and how you'll act (Moss et al., 2020).  
+3.  **Context Stabilization**: Consistently performing the behavior in the same context improves retention by 23%; linking to existing routines (Karppinen et al., 2017).  
+4.  **Neural Encoding**: Behavior becomes automatic as myelin builds around neural pathways; higher automaticity correlates with increased myelination (d = 0.73).  
+
+
+::: {.notes}
+Habit formation is a journey from intention to instinct. It starts with a deliberate choice, followed by a concrete plan. By embedding the new behavior into our existing routines, we allow our brains to rewire, making the action effortless over time.<break time="1.0s" />
+:::
+
+---
+
+
+## The Neural Basis of Habits: How the Brain Automates Behavior
+
+::: columns
+::: {.column width="50%"}
+- **Increased Myelination**: Established habits show 14% thicker myelin sheaths in the basal ganglia, enhancing signal speed (Wood & Neal, 2016).  
+- **Shift in Brain Activation**: Early on, the prefrontal cortex is active (effortful control); later, the dorsal striatum takes over, making the behavior automatic.  
+- **Neural Efficiency Gains**: Over 300+ repetitions, neural pathways become 62% more efficient, reducing cognitive load.  
+:::
+::: {.column width="50%"}
+:::
+:::
+
+
+::: {.notes}
+Our brains are remarkably adaptable. With repeated practice, neural pathways strengthen, and control shifts from conscious thought to automatic processing. This not only makes the behavior feel easier but also frees up mental energy for other tasks.<break time="1.0s" />
+:::
+
+---
+
+
+## Three Key Components to Building Lasting Habits
+
+::: {.notes}
+So, what does it take to build a habit that endures? Let's explore three pivotal components that, when combined, lay the foundation for sustainable change.<break time="1.0s" />
+:::
+
+---
+
+
+## Timing Matters: Flossing After Brushing Boosts Habit Formation
+
+::: columns
+::: {.column width="50%"}
+**Flossing Before Brushing:**  
+- Automaticity score increased from 4.2 to 5.1  
+- 63% adherence after 8 months  
+
+:::
+::: {.column width="50%"}
+**Flossing After Brushing:**  
+- Automaticity score increased from 4.2 to 6.7  
+- 89% adherence after 8 months (d = 0.67, p = .04)  
+
+:::
+:::
+
+Anchoring flossing to an existing habit (brushing) strengthens the new habit (Judah et al., 2012).  
+
+
+::: {.notes}
+The sequence of actions can significantly impact habit formation. By flossing after brushing—an already established routine—participants saw a notable increase in automaticity and long-term adherence. It's a testament to the power of context anchoring.<break time="1.0s" />
+:::
+
+---
+
+
+## Linking Habits: The Power of Temporal Chaining
+
+1.  **Existing Routine**: While your coffee brews (current habit)  
+2.  **New Habit**: Meditate for 5 minutes (new behavior)  
+3.  **Reward**: Enjoy your first sip of coffee (immediate reward)  
+
+This chain leads to a 23% higher adoption rate than introducing the new habit alone.  
+
+
+::: {.notes}
+By inserting a new habit between an existing routine and a reward, we create a seamless flow that enhances adoption. It's not just about adding a behavior; it's about strategically placing it where it's most likely to stick.<break time="1.0s" />
+:::
+
+---
+
+
+## Combining Cues: How Multiple Triggers Improve Retention
+
+- Using meal logging, step tracking, and sleep monitoring together leads to 38% better habit retention at 6 months compared to a single cue (Karppinen et al., 2017).  
+- Caution: 57% of users developed dependency on the app rather than building sustainable habits.  
+
+
+::: {.notes}
+Multiple cues can reinforce habits, but there's a fine line. While combining triggers boosts retention, over-reliance on external tools like apps can hinder long-term sustainability. The goal is to internalize the habit, not become dependent on technology.<break time="1.0s" />
+:::
+
+---
+
+
+## Bridging the Intention-Action Gap: The Role of Motivation
+
+::: {.notes}
+Intentions don't always translate into actions. Motivation is the bridge that connects them. Understanding how to enhance and sustain motivation is crucial for turning plans into reality.<break time="1.0s" />
+:::
+
+---
+
+
+## Enhancing Motivation: Strategies That Work
+
+::: columns
+::: {.column width="50%"}
+🔵 **Set Micro-Goals**: 2% weekly improvements lead to 25% better adherence than larger, infrequent goals.  
+🔵 **Visual Progress Tracking**: Users tracking progress visually maintained habits 9.3 weeks longer (Livestrong MyPlate data).  
+:::
+::: {.column width="50%"}
+🔵 **Accountability Partnerships**: Sharing goals with a partner increases compliance by 18% (Moss et al., 2020).  
+🔵 **Variable Rewards**: Unpredictable rewards sustain engagement 24% longer than fixed schedules.  
+:::
+:::
+
+
+::: {.notes}
+Small, incremental goals can make a big difference. By focusing on attainable milestones and visualizing progress, we keep motivation high. Adding an accountability partner and introducing variable rewards further enhance commitment and enjoyment.<break time="1.0s" />
+:::
+
+---
+
+
+## The "When X Happens, I Will Do Y" Formula
+
+::: columns
+::: {.column width="50%"}
+Implementation intentions link a cue to an action:  
+
+"When [my alarm rings at 7 am], I will [do 5 push-ups]."  
+
+- Increases completion rates to 72% vs. 54% for vague plans  
+- Public commitment boosts efficacy by an additional 11%  
+:::
+::: {.column width="50%"}
+
+:::
+:::
+
+
+::: {.notes}
+Specifying exactly when and where you'll perform an action turns a vague intention into a concrete plan. This simple formula leverages situational cues to trigger desired behaviors, significantly improving follow-through rates.<break time="1.0s" />
+:::
+
+---
+
+
+## Rewiring Your Mind: Cognitive Strategies for Habits
+
+::: {.notes}
+Changing our behaviors often requires changing our thinking. Let's explore cognitive strategies that can reshape our minds and make habit formation more effective.<break time="1.0s" />
+:::
+
+---
+
+
+## Spaced Reminders: The 2-24-72 Hour Rule
+
+::: columns
+::: {.column width="50%"}
+Sending reminders at 2 hours, 24 hours, and 72 hours before action:  
+- Increases clinic attendance by 29% (Cleo et al., 2018)  
+- Especially effective for those with poor prospective memory  
+:::
+::: {.column width="50%"}
+
+:::
+:::
+
+
+::: {.notes}
+Timing of reminders is key. Spaced reminders tap into our natural memory patterns, reinforcing the intended action at just the right moments. This technique is particularly helpful for individuals who struggle with remembering future tasks.<break time="1.0s" />
+:::
+
+---
+
+
+## Making Habits Easier: Strategies to Reduce Effort
+
+::: columns
+::: {.column width="33%"}
+🧩 **Chunk Tasks**: Breaking 15 reps into 3 sets of 5 reduces attrition by 38%.  
+:::
+::: {.column width="34%"}
+🕒 **Temptation Bundling**: Only listen to your favorite audiobook while exercising.  
+:::
+::: {.column width="33%"}
+🤝 **Design Your Environment**: Placing a fruit bowl prominently increases fruit intake by 19%.  
+:::
+:::
+
+
+::: {.notes}
+Reducing friction makes habits more attainable. By chunking tasks, pairing activities with enjoyable ones, or tweaking our environment, we lower barriers and make the desired behaviors more appealing and easier to perform.<break time="1.0s" />
+:::
+
+---
+
+
+## Why 68% of Habits Derail by Month Six
+
+::: {.notes}
+Despite early successes, many habits fall apart within six months. Understanding the factors that lead to this drop-off is crucial for developing strategies to keep our habits on track.<break time="1.0s" />
+:::
+
+---
+
+
+## The Critical Window for Habit Formation
+
+- **Days 1–21**: 53% dropout rate as new routines are fragile  
+- **Days 22–50**: Dropout decreases to 12%; habits start to solidify  
+- **Day 66**: Behaviors reach automaticity plateau (Lally et al., 2010)  
+- **Beyond 100 Days**: 9% continue to improve, further strengthening the habit  
+
+
+::: {.notes}
+The first three weeks are the most vulnerable period for a new habit. As we progress, the habit becomes more ingrained, but it's important to recognize that reaching automaticity is a gradual process. Persistence beyond the initial months pays off.<break time="1.0s" />
+:::
+
+---
+
+
+## The Biggest Obstacles to Habit Maintenance
+
+::: columns
+::: {.column width="33%"}
+🔥 **Context Disruptions**: Routine changes like weekends lead to 39% drop in adherence; flexible cues reduce this to 9% (Diefenbacher et al., 2022).  
+:::
+::: {.column width="34%"}
+💤 **Reward Habituation**: Fixed rewards lose impact over time; variable rewards sustain engagement 24% longer.  
+:::
+::: {.column width="33%"}
+⚔️ **Competing Behaviors**: Substituting healthier actions (water instead of snacking) improves maintenance (OR = 3.1, 95% CI: 2.4–4.0).  
+:::
+:::
+
+
+::: {.notes}
+Habit derailment often stems from disruptions, diminishing rewards, and competing behaviors. By anticipating these challenges, we can implement strategies to mitigate their impact and keep our habits resilient over time.<break time="1.0s" />
+:::
+
+---
+
+
+## Anchoring Habits to Multiple Routines Enhances Resilience
+
+- Linking fruit consumption to both morning and evening routines reduces weekend adherence drops from 39% to 9% (Diefenbacher et al., 2022).  
+- Increases context generalization by 22%, making habits stick across different situations.  
+
+
+::: {.notes}
+Diversifying the contexts in which we perform a habit makes it more robust. By anchoring a habit to multiple routines, we decrease the likelihood that a disruption in one area will derail the entire behavior.<break time="1.0s" />
+:::
+
+---
+
+
+## Enhancing Motivation Through Gamification
+
+::: columns
+::: {.column width="33%"}
+🎰 **Variable Rewards**: Unpredictable incentives extend engagement by 24%.  
+:::
+::: {.column width="34%"}
+🏆 **Achievement Badges**: Earning badges boosts adherence by up to 35%.  
+:::
+::: {.column width="33%"}
+👥 **Social Benchmarking**: Comparing progress anonymously with peers increases adherence by 31%.  
+:::
+:::
+
+
+::: {.notes}
+Gamification taps into our innate desire for achievement and social connection. By introducing elements like variable rewards and social comparisons, we can make habit formation more engaging and enjoyable.<break time="1.0s" />
+:::
+
+---
+
+
+## When Technology Meets Habit Formation
+
+::: {.notes}
+Technology offers powerful tools for building habits, but it comes with its own set of challenges. Let's examine how to leverage tech without becoming overly reliant on it.<break time="1.0s" />
+:::
+
+---
+
+
+## Personalizing Habits with Adaptive Systems
+
+::: columns
+::: {.column width="50%"}
+- Onnikka adjusts daily step goals based on the previous week's performance, focusing on lower activity days.  
+- Reduces perceived effort by 18% compared to fixed goals (Karppinen et al., 2017).  
+- Watch out: 57% risk developing dependency on the app.  
+:::
+::: {.column width="50%"}
+:::
+:::
+
+
+::: {.notes}
+Adaptive systems personalize the habit-building process, making goals feel more attainable. However, there's a risk of becoming dependent on these tools, which can undermine long-term habit sustainability.<break time="1.0s" />
+:::
+
+---
+
+
+## The Impact of Peer Comparisons on Adherence
+
+::: columns
+::: {.column width="50%"}
+- Anonymous comparisons boost meal logging by 31% and workout consistency by 22%.  
+- Caution: May discourage the lowest-performing 15% of users.  
+:::
+::: {.column width="50%"}
+
+:::
+:::
+
+
+::: {.notes}
+Social benchmarking can motivate us to stick to our habits, knowing others are on the same journey. However, it's important to be mindful of those who might feel discouraged by comparisons, ensuring support is inclusive.<break time="1.0s" />
+:::
+
+---
+
+
+## Beware of App Dependency: When Tools Become Crutches
+
+- "Our app became the habit." — 57% of Onnikka users  
+- Solution: Gradually reduce prompts by 22% each week after day 45 to promote independence.  
+
+
+::: {.notes}
+While apps can kickstart habit formation, they shouldn't become the habit themselves. Gradually reducing reliance on prompts encourages internal motivation and long-term adherence without external crutches.<break time="1.0s" />
+:::
+
+---
+
+
+## From Lab to Life: Your Habit-Building Checklist
+
+::: {.notes}
+We've covered the theory and the science. Now, let's translate these insights into practical steps you can implement in your daily life to build lasting habits.<break time="1.0s" />
+:::
+
+---
+
+
+## The Top Drivers of Habit Formation Success
+
+::: columns
+::: {.column width="33%"}
+🥇 **Context Alignment**: Aligning habits with existing routines accounts for 62% of success.  
+:::
+::: {.column width="34%"}
+🥈 **Anticipate Plateaus**: Planning for plateaus improves persistence by 22%.  
+:::
+::: {.column width="33%"}
+🥉 **Track Your Habits**: Regular tracking increases engagement (3.2 vs. 1.6 logins per week).  
+:::
+:::
+
+
+::: {.notes}
+Aligning new habits with your current lifestyle, preparing for inevitable slowdowns, and consistently tracking progress are key factors that significantly boost your chances of success.<break time="1.0s" />
+:::
+
+---
+
+
+## The Five Biggest Mistakes in Habit Design
+
+::: columns
+::: {.column width="50%"}
+⚠️ **Taking On Too Much**: Adopting over five habits reduces success; each additional habit decreases odds by 47%.  
+⚠️ **Ignoring Context**: Skipping context analysis leads to lower effectiveness (41% of interventions fail here).  
+⚠️ **Static Rewards**: Fixed rewards see a 78% drop in engagement by month three.  
+:::
+::: {.column width="50%"}
+⚠️ **Going It Alone**: Lacking social support decreases success rates by 14%.  
+⚠️ **Relying on Time Cues**: Time-based cues fail 67% more often than event-based cues.  
+:::
+:::
+
+
+::: {.notes}
+Avoid these common pitfalls: don't overcommit, consider the context of your habits, keep rewards dynamic, seek support, and anchor habits to events rather than just time schedules.<break time="1.0s" />
+:::
+
+---
+
+
+## Seven Essential Tools for Building Effective Habits
+
+1.  **Anchor to Frequent Events**: Link new habits to daily routines.  
+2.  **Set Small Weekly Goals**: Aim for 2% improvements each week.  
+3.  **Use Variable Rewards**: Keep motivation high with unpredictable incentives.  
+4.  **Leverage Accountability**: Combine action plans with social support.  
+5.  **Build Context Flexibility**: Establish habits in multiple settings.  
+6.  **Reduce Tech Dependence**: Gradually fade app prompts over time.  
+7.  **Track Repetitions**: Monitor your actions to reinforce neural pathways.  
+
+
+::: {.notes}
+These tools provide a practical roadmap for habit formation. By integrating them into your approach, you can craft habits that are not only effective but enduring.<break time="1.0s" />
+:::
+
+---
+
+
+## Beyond Willpower: Creating Habits That Sustain Themselves
+
+::: {.notes}
+Ultimately, lasting change isn't about sheer willpower; it's about smart strategy. By understanding and applying the science of habit formation, we can develop behaviors that sustain themselves over time.<break time="1.0s" />
+:::
+
+---
+
+
+## Citations
+
+1.  Lally, P., & Gardner, B. (2013). Promoting habit formation. *Health Psychology Review*.  
+2.  Judah, G., Gardner, B., & Aunger, R. (2013). Forming a flossing habit: An exploratory study of the psychological determinants of habit formation. *British Journal of Health Psychology*, 18(2), 338–353.  
+3.  Gardner, B. (2019). Habit formation and behavior change. In *Oxford Research Encyclopedia of Psychology*.  
+4.  Karppinen, P., et al. (2017). Personalised habit formation and the Onnikka system in metabolic syndrome prevention: A randomised controlled trial. *Journal of Medical Internet Research*, 19(12), e387.  
+5.  Cleo, G., et al. (2018). The effectiveness of habit-based interventions for weight loss: A systematic review and meta-analysis. *International Journal of Obesity*, 42(10), 1673–1680.  
+
+---
